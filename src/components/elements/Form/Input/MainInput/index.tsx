@@ -1,25 +1,28 @@
-import {Formik} from 'formik';
-import {FormControl} from 'native-base';
+import {FormControl, Input} from 'native-base';
 import React from 'react';
-import {TextInput, TextInputProps, View} from 'react-native';
+import {TextInputProps, Text} from 'react-native';
+import {styles} from './styles';
 interface Props extends TextInputProps {
   label: string;
+  name: string;
   errorMessage?: string;
   helperText?: string;
+  required?: boolean;
 }
 
 const MainInput: React.FC<Props> = props => {
-  const {label, errorMessage, helperText} = props;
+  const {label, errorMessage, helperText, required} = props;
   return (
-    <FormControl>
+    <FormControl isRequired={required}>
       <FormControl.Label>{label}</FormControl.Label>
-      <TextInput {...props} />
-      {helperText && !errorMessage && (
-        <FormControl.HelperText>{helperText}</FormControl.HelperText>
-      )}
-      {errorMessage && (
-        <FormControl.ErrorMessage>{errorMessage}</FormControl.ErrorMessage>
+      <Input {...props} />
+      {errorMessage ? (
+        <Text style={styles.errorText}>{errorMessage}</Text>
+      ) : (
+        <Text fontSize="sm">{helperText}</Text>
       )}
     </FormControl>
   );
 };
+
+export default MainInput;

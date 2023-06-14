@@ -4,10 +4,11 @@ import {styles} from './styles';
 type Props = {
   onPress(): void;
   text: string;
+  disabled?: boolean;
 };
-const MainButton: React.FC<Props> = ({onPress, text}) => {
+const MainButton: React.FC<Props> = ({onPress, text, disabled}) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity disabled={disabled} onPress={onPress}>
       <View style={styles.container}>
         <Text style={styles.text}>{text}</Text>
       </View>
@@ -16,3 +17,9 @@ const MainButton: React.FC<Props> = ({onPress, text}) => {
 };
 
 export default MainButton;
+
+MainButton.defaultProps = {
+  text: '',
+  disabled: false,
+  onPress: () => {},
+};

@@ -1,12 +1,20 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, ViewProps, ViewStyle} from 'react-native';
 import {styles} from './styles';
 
 type Props = {
   children: JSX.Element;
+  style: ViewStyle;
 };
-const Screen: React.FC<Props> = ({children}) => {
-  return <SafeAreaView style={styles.container}>{children}</SafeAreaView>;
+const Screen: React.FC<Props> = ({children, style}) => {
+  return (
+    <SafeAreaView style={[styles.container, style]}>{children}</SafeAreaView>
+  );
 };
 
 export default Screen;
+
+Screen.defaultProps = {
+  children: undefined,
+  style: {},
+};
