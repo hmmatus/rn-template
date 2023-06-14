@@ -19,7 +19,7 @@ const MainInput: React.FC<Props> = props => {
       {errorMessage ? (
         <Text style={styles.errorText}>{errorMessage}</Text>
       ) : (
-        <Text fontSize="sm">{helperText}</Text>
+        <Text style={styles.helperText}>{helperText}</Text>
       )}
     </FormControl>
   );

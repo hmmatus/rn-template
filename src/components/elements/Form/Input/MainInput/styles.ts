@@ -5,4 +5,8 @@ export const styles = StyleSheet.create({
     color: 'red',
     fontSize: 14,
   },
+  helperText: {
+    color: 'gray',
+    fontSize: 10,
+  },
 });
