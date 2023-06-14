@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {loggedInOptions} from './config/config';
-import Home from '../screens/home';
+import Home from 'src/components/screens/home';
 export type MainRootStack = {
   Home: undefined;
 };

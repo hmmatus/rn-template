@@ -1,8 +1,8 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {useAppSelector} from './redux/hooks';
-import AuthNav from './components/navigation/authNav';
-import MainNav from './components/navigation/mainNav';
+import AuthNav from 'src/components/navigation/authNav';
+import MainNav from 'src/components/navigation/mainNav';
 
 const AppWrapper = () => {
   const {isLoggedIn} = useAppSelector(state => state.auth);

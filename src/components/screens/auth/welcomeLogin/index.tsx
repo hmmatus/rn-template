@@ -1,10 +1,10 @@
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {AuthRootStack} from '../../../navigation/authNav';
-import Screen from '../../../elements/Screen';
-import {useAppDispatch} from '../../../../redux/hooks';
-import {setLoggedIn} from '../../../../redux/auth/slice';
-import MainButton from '../../../elements/Button/MainButton';
+import {AuthRootStack} from 'src/components/navigation/authNav';
+import Screen from 'src/components/elements/Screen';
+import {useAppDispatch} from 'src/redux/hooks';
+import {setLoggedIn} from 'src/redux/auth/slice';
+import MainButton from 'src/components/elements/Button/MainButton';
 
 type Props = NativeStackScreenProps<AuthRootStack, 'WelcomeLogin'>;
 const WelcomeLogin = ({}: Props) => {
