@@ -1,23 +1,29 @@
 import React from 'react';
-import {Image, View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import {PokemonP} from 'src/models/pokemon.model';
 import {Text} from 'react-native';
+import {getPokemonImageUrl} from 'src/utils/pokemonImage';
 
 type Props = {
   item: PokemonP;
   index?: number;
+  onPress(): void;
 };
-const PokemonCard: React.FC<Props> = ({item}) => {
-  const pokemonIndex = item.url.split('/')[item.url.split('/').length - 2];
-  const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`;
+const PokemonCard: React.FC<Props> = ({item, onPress}) => {
   return (
-    <View style={styles.container}>
-      <Image style={styles.image} resizeMode="cover" source={{uri: imageUrl}} />
-      <View style={styles.descriptionC}>
-        <Text style={styles.text}>{item.name}</Text>
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.container}>
+        <Image
+          style={styles.image}
+          resizeMode="cover"
+          source={{uri: getPokemonImageUrl(item.url)}}
+        />
+        <View style={styles.descriptionC}>
+          <Text style={styles.text}>{item.name}</Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
