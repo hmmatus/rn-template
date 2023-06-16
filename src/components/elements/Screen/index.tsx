@@ -4,7 +4,7 @@ import {styles} from './styles';
 
 type Props = {
   children: JSX.Element;
-  style: ViewStyle;
+  style?: ViewStyle;
 };
 const Screen: React.FC<Props> = ({children, style}) => {
   return (

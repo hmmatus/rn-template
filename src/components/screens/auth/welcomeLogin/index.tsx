@@ -10,6 +10,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import MainInput from 'src/components/elements/Form/Input/MainInput';
 import {loginValidationSchema} from './config';
 import {Controller, useForm} from 'react-hook-form';
+import {API_URL} from '@env';
 
 interface FormValues {
   username: string;
@@ -30,11 +31,8 @@ const WelcomeLogin = ({}: Props) => {
     resolver: yupResolver(loginValidationSchema),
     mode: 'onChange',
   });
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
 
-  const handleOnSubmit = values => {
+  const handleOnSubmit = () => {
     dispatch(setLoggedIn());
   };
   return (
