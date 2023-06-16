@@ -15,7 +15,7 @@ import {styles} from './styles';
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 
 type Props = BottomTabScreenProps<BottomRootTab, 'Home'>;
-const Home = ({}: Props) => {
+const Home = ({navigation}: Props) => {
   const [data, setData] = useState([]);
   const getAllPokemons = async (limit: number) => {
     try {
@@ -24,6 +24,11 @@ const Home = ({}: Props) => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const onPressItem = item => {
+    navigation.getParent()?.navigate('PokemonDetail', {
+      item,
+    });
   };
 
   useEffect(() => {
@@ -38,7 +43,11 @@ const Home = ({}: Props) => {
           data={data}
           numColumns={3}
           renderItem={({item, index}) => (
-            <PokemonCard index={index} item={item} />
+            <PokemonCard
+              index={index}
+              item={item}
+              onPress={() => onPressItem(item)}
+            />
           )}
         />
       </>
