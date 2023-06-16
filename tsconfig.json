@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./" // add this line
   },
-  "include": ["src"] // existing
+  "include": ["src"],
+  "typeRoots": ["./src/types"],
   
 }
