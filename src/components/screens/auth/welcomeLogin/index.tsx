@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthRootStack} from 'src/components/navigation/authNav';
 import Screen from 'src/components/elements/Screen';
@@ -30,6 +30,9 @@ const WelcomeLogin = ({}: Props) => {
     resolver: yupResolver(loginValidationSchema),
     mode: 'onChange',
   });
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
 
   const handleOnSubmit = values => {
     dispatch(setLoggedIn());

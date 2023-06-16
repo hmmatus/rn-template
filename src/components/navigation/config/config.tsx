@@ -1,3 +1,4 @@
+import {BottomTabNavigationOptions} from '@react-navigation/bottom-tabs';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 
 export const authOptions = ({
@@ -14,4 +15,8 @@ export const loggedInOptions = ({
 }): NativeStackNavigationOptions => ({
   headerBackButtonMenuEnabled: true,
   headerTitle: '',
+});
+
+export const tabNavOptions = ({}): BottomTabNavigationOptions => ({
+  headerShown: false,
 });
