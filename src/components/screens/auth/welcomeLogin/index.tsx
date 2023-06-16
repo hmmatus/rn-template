@@ -6,9 +6,10 @@ import {useAppDispatch} from 'src/redux/hooks';
 import {setLoggedIn} from 'src/redux/auth/slice';
 import MainButton from 'src/components/elements/Button/MainButton';
 import {styles} from './styles';
-import {Formik} from 'formik';
+import {yupResolver} from '@hookform/resolvers/yup';
 import MainInput from 'src/components/elements/Form/Input/MainInput';
 import {loginValidationSchema} from './config';
+import {Controller, useForm} from 'react-hook-form';
 
 interface FormValues {
   username: string;
@@ -17,51 +18,62 @@ interface FormValues {
 type Props = NativeStackScreenProps<AuthRootStack, 'WelcomeLogin'>;
 const WelcomeLogin = ({}: Props) => {
   const dispatch = useAppDispatch();
-  const initialValues: FormValues = {username: '', password: ''};
+  const {
+    control,
+    handleSubmit,
+    formState: {errors, isValid},
+  } = useForm<FormValues>({
+    defaultValues: {
+      username: '',
+      password: '',
+    },
+    resolver: yupResolver(loginValidationSchema),
+    mode: 'onChange',
+  });
 
   const handleOnSubmit = values => {
     dispatch(setLoggedIn());
   };
   return (
     <Screen style={styles.container}>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleOnSubmit}
-        validationSchema={loginValidationSchema}>
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          isValid,
-        }) => (
-          <>
+      <>
+        <Controller
+          control={control}
+          rules={{required: true}}
+          render={({field: {onChange, onBlur, value, name}}) => (
             <MainInput
               label="Username"
               name="username"
-              value={values.username}
-              onChangeText={handleChange('username')}
-              errorMessage={errors.username}
-              onBlur={handleBlur('username')}
+              value={value}
+              onChangeText={onChange}
+              errorMessage={errors.username?.message}
+              onBlur={onBlur}
             />
+          )}
+          name="username"
+        />
+        <Controller
+          control={control}
+          name="password"
+          rules={{required: true}}
+          render={({field: {onChange, onBlur, value, name}}) => (
             <MainInput
               label="Password"
               name="password"
-              value={values.password}
-              onChangeText={handleChange('password')}
-              errorMessage={errors.password}
-              onBlur={handleBlur('password')}
+              value={value}
+              onChangeText={onChange}
+              errorMessage={errors.password?.message}
+              onBlur={onBlur}
               secureTextEntry
             />
-            <MainButton
-              disabled={!isValid}
-              text="Next"
-              onPress={handleSubmit}
-            />
-          </>
-        )}
-      </Formik>
+          )}
+        />
+        <MainButton
+          disabled={!isValid}
+          text="Next"
+          onPress={handleSubmit(handleOnSubmit)}
+        />
+      </>
     </Screen>
   );
 };

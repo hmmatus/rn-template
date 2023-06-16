@@ -10,12 +10,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.1.1",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "@reduxjs/toolkit": "^1.9.5",
-    "formik": "^2.4.2",
     "native-base": "^3.4.28",
     "react": "18.2.0",
+    "react-hook-form": "^7.44.3",
     "react-native": "0.71.10",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "^3.20.0",
