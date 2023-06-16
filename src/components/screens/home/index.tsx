@@ -12,8 +12,9 @@ import {FlatListProps} from 'react-native';
 import PokemonCard from 'src/components/elements/Card/PokemonCard';
 import {API_URL} from '@env';
 import {styles} from './styles';
+import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 
-type Props = NativeStackScreenProps<BottomRootTab, 'Home'>;
+type Props = BottomTabScreenProps<BottomRootTab, 'Home'>;
 const Home = ({}: Props) => {
   const [data, setData] = useState([]);
   const getAllPokemons = async (limit: number) => {
